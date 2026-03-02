@@ -42,14 +42,12 @@ export default function Sidebar({ className = '', onItemClick }: { className?: s
     
     <aside className={`flex flex-col h-full bg-[#101828] ${className}`}>
       {/* Brand Section */}
-      <div className="border-b border-white/10 p-4">
+      <div className="border-b border-white/10 p-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
-            <Sparkles size={24} />
-          </div>
+          <img src="/logo.png" alt="logo" className="h-10 w-10" />
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-white">Vera</span>
-            <span className="text-xs text-white/50">Intelligence</span>
+            <span className="text-lg  text-white">Vera</span>
+            <span className="text-xs text-white/50">INTELLIGENCE    </span>
           </div>
         </div>
       </div>
