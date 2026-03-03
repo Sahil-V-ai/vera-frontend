@@ -9,9 +9,9 @@ import {
     Divider,
 } from '@heroui/react'
 import { Building2, Bell, Shield, Save, AlertCircle } from 'lucide-react'
-import { Card } from '#/components/Card'
+import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/settings')({
+export const Route = createFileRoute('/_protected/settings')({
     component: SettingsPage,
 })
 

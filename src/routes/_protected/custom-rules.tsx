@@ -6,9 +6,9 @@ import {
     Code,
 } from '@heroui/react'
 import { Plus, Edit2, Trash2, Play } from 'lucide-react'
-import { Card } from '#/components/Card'
+import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/custom-rules')({
+export const Route = createFileRoute('/_protected/custom-rules')({
     component: CustomRulesPage,
 })
 

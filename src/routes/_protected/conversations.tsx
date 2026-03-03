@@ -12,9 +12,9 @@ import {
     CardBody,
 } from '@heroui/react'
 import { FilterIcon, Search } from 'lucide-react'
-import { Card } from '#/components/Card'
+import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/conversations')({
+export const Route = createFileRoute('/_protected/conversations')({
     component: ConversationsPage,
 })
 

@@ -2,9 +2,6 @@
   "name": "my-tanstack-app",
   "private": true,
   "type": "module",
-  "imports": {
-    "#/*": "./src/*"
-  },
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
@@ -32,6 +29,7 @@
     "better-auth": "^1.4.12",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.545.0",
+    "pg": "^8.19.0",
     "prisma": "^7.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -43,6 +41,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
     "@types/node": "^22.10.2",
+    "@types/pg": "^8.18.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",

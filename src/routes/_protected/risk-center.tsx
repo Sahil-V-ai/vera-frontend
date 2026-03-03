@@ -5,9 +5,9 @@ import {
     CardBody,
 } from '@heroui/react'
 import { AlertCircle, AlertTriangle, Lightbulb } from 'lucide-react'
-import { Card } from '#/components/Card'
+import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/risk-center')({
+export const Route = createFileRoute('/_protected/risk-center')({
     component: RiskCenterPage,
 })
 

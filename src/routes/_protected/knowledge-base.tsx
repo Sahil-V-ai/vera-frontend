@@ -7,10 +7,10 @@ import {
     Tab,
 } from '@heroui/react'
 import { Plus, RotateCw } from 'lucide-react'
-import { Card } from '#/components/Card'
+import { Card } from '@/components/Card'
 import { FileText, Database, RefreshCw, Upload, Link2 } from 'lucide-react'
 
-export const Route = createFileRoute('/knowledge-base')({
+export const Route = createFileRoute('/_protected/knowledge-base')({
     component: KnowledgeBasePage,
 })
 

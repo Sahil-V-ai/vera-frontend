@@ -9,56 +9,33 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UsersRouteImport } from './routes/users'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as RiskCenterRouteImport } from './routes/risk-center'
-import { Route as KnowledgeBaseRouteImport } from './routes/knowledge-base'
-import { Route as CustomRulesRouteImport } from './routes/custom-rules'
-import { Route as ConversationsRouteImport } from './routes/conversations'
-import { Route as AgentsRouteImport } from './routes/agents'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoBetterAuthRouteImport } from './routes/demo/better-auth'
+import { Route as ProtectedUsersRouteImport } from './routes/_protected/users'
+import { Route as ProtectedSettingsRouteImport } from './routes/_protected/settings'
+import { Route as ProtectedRiskCenterRouteImport } from './routes/_protected/risk-center'
+import { Route as ProtectedKnowledgeBaseRouteImport } from './routes/_protected/knowledge-base'
+import { Route as ProtectedCustomRulesRouteImport } from './routes/_protected/custom-rules'
+import { Route as ProtectedConversationsRouteImport } from './routes/_protected/conversations'
+import { Route as ProtectedBetterAuthRouteImport } from './routes/_protected/better-auth'
+import { Route as ProtectedAgentsRouteImport } from './routes/_protected/agents'
+import { Route as ProtectedAboutRouteImport } from './routes/_protected/about'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const UsersRoute = UsersRouteImport.update({
-  id: '/users',
-  path: '/users',
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RiskCenterRoute = RiskCenterRouteImport.update({
-  id: '/risk-center',
-  path: '/risk-center',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KnowledgeBaseRoute = KnowledgeBaseRouteImport.update({
-  id: '/knowledge-base',
-  path: '/knowledge-base',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CustomRulesRoute = CustomRulesRouteImport.update({
-  id: '/custom-rules',
-  path: '/custom-rules',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConversationsRoute = ConversationsRouteImport.update({
-  id: '/conversations',
-  path: '/conversations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AgentsRoute = AgentsRouteImport.update({
-  id: '/agents',
-  path: '/agents',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -66,10 +43,50 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoBetterAuthRoute = DemoBetterAuthRouteImport.update({
-  id: '/demo/better-auth',
-  path: '/demo/better-auth',
-  getParentRoute: () => rootRouteImport,
+const ProtectedUsersRoute = ProtectedUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedSettingsRoute = ProtectedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedRiskCenterRoute = ProtectedRiskCenterRouteImport.update({
+  id: '/risk-center',
+  path: '/risk-center',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedKnowledgeBaseRoute = ProtectedKnowledgeBaseRouteImport.update({
+  id: '/knowledge-base',
+  path: '/knowledge-base',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedCustomRulesRoute = ProtectedCustomRulesRouteImport.update({
+  id: '/custom-rules',
+  path: '/custom-rules',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedConversationsRoute = ProtectedConversationsRouteImport.update({
+  id: '/conversations',
+  path: '/conversations',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedBetterAuthRoute = ProtectedBetterAuthRouteImport.update({
+  id: '/better-auth',
+  path: '/better-auth',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAgentsRoute = ProtectedAgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAboutRoute = ProtectedAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => ProtectedRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
@@ -79,156 +96,129 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/agents': typeof AgentsRoute
-  '/conversations': typeof ConversationsRoute
-  '/custom-rules': typeof CustomRulesRoute
-  '/knowledge-base': typeof KnowledgeBaseRoute
-  '/risk-center': typeof RiskCenterRoute
-  '/settings': typeof SettingsRoute
-  '/users': typeof UsersRoute
-  '/demo/better-auth': typeof DemoBetterAuthRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
+  '/about': typeof ProtectedAboutRoute
+  '/agents': typeof ProtectedAgentsRoute
+  '/better-auth': typeof ProtectedBetterAuthRoute
+  '/conversations': typeof ProtectedConversationsRoute
+  '/custom-rules': typeof ProtectedCustomRulesRoute
+  '/knowledge-base': typeof ProtectedKnowledgeBaseRoute
+  '/risk-center': typeof ProtectedRiskCenterRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/users': typeof ProtectedUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/agents': typeof AgentsRoute
-  '/conversations': typeof ConversationsRoute
-  '/custom-rules': typeof CustomRulesRoute
-  '/knowledge-base': typeof KnowledgeBaseRoute
-  '/risk-center': typeof RiskCenterRoute
-  '/settings': typeof SettingsRoute
-  '/users': typeof UsersRoute
-  '/demo/better-auth': typeof DemoBetterAuthRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
+  '/about': typeof ProtectedAboutRoute
+  '/agents': typeof ProtectedAgentsRoute
+  '/better-auth': typeof ProtectedBetterAuthRoute
+  '/conversations': typeof ProtectedConversationsRoute
+  '/custom-rules': typeof ProtectedCustomRulesRoute
+  '/knowledge-base': typeof ProtectedKnowledgeBaseRoute
+  '/risk-center': typeof ProtectedRiskCenterRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/users': typeof ProtectedUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/agents': typeof AgentsRoute
-  '/conversations': typeof ConversationsRoute
-  '/custom-rules': typeof CustomRulesRoute
-  '/knowledge-base': typeof KnowledgeBaseRoute
-  '/risk-center': typeof RiskCenterRoute
-  '/settings': typeof SettingsRoute
-  '/users': typeof UsersRoute
-  '/demo/better-auth': typeof DemoBetterAuthRoute
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
+  '/_protected/about': typeof ProtectedAboutRoute
+  '/_protected/agents': typeof ProtectedAgentsRoute
+  '/_protected/better-auth': typeof ProtectedBetterAuthRoute
+  '/_protected/conversations': typeof ProtectedConversationsRoute
+  '/_protected/custom-rules': typeof ProtectedCustomRulesRoute
+  '/_protected/knowledge-base': typeof ProtectedKnowledgeBaseRoute
+  '/_protected/risk-center': typeof ProtectedRiskCenterRoute
+  '/_protected/settings': typeof ProtectedSettingsRoute
+  '/_protected/users': typeof ProtectedUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/signin'
+    | '/signup'
     | '/about'
     | '/agents'
+    | '/better-auth'
     | '/conversations'
     | '/custom-rules'
     | '/knowledge-base'
     | '/risk-center'
     | '/settings'
     | '/users'
-    | '/demo/better-auth'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/signin'
+    | '/signup'
     | '/about'
     | '/agents'
+    | '/better-auth'
     | '/conversations'
     | '/custom-rules'
     | '/knowledge-base'
     | '/risk-center'
     | '/settings'
     | '/users'
-    | '/demo/better-auth'
     | '/api/auth/$'
   id:
     | '__root__'
     | '/'
-    | '/about'
-    | '/agents'
-    | '/conversations'
-    | '/custom-rules'
-    | '/knowledge-base'
-    | '/risk-center'
-    | '/settings'
-    | '/users'
-    | '/demo/better-auth'
+    | '/_protected'
+    | '/signin'
+    | '/signup'
+    | '/_protected/about'
+    | '/_protected/agents'
+    | '/_protected/better-auth'
+    | '/_protected/conversations'
+    | '/_protected/custom-rules'
+    | '/_protected/knowledge-base'
+    | '/_protected/risk-center'
+    | '/_protected/settings'
+    | '/_protected/users'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  AgentsRoute: typeof AgentsRoute
-  ConversationsRoute: typeof ConversationsRoute
-  CustomRulesRoute: typeof CustomRulesRoute
-  KnowledgeBaseRoute: typeof KnowledgeBaseRoute
-  RiskCenterRoute: typeof RiskCenterRoute
-  SettingsRoute: typeof SettingsRoute
-  UsersRoute: typeof UsersRoute
-  DemoBetterAuthRoute: typeof DemoBetterAuthRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  SigninRoute: typeof SigninRoute
+  SignupRoute: typeof SignupRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/users': {
-      id: '/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof UsersRouteImport
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/risk-center': {
-      id: '/risk-center'
-      path: '/risk-center'
-      fullPath: '/risk-center'
-      preLoaderRoute: typeof RiskCenterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/knowledge-base': {
-      id: '/knowledge-base'
-      path: '/knowledge-base'
-      fullPath: '/knowledge-base'
-      preLoaderRoute: typeof KnowledgeBaseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/custom-rules': {
-      id: '/custom-rules'
-      path: '/custom-rules'
-      fullPath: '/custom-rules'
-      preLoaderRoute: typeof CustomRulesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/conversations': {
-      id: '/conversations'
-      path: '/conversations'
-      fullPath: '/conversations'
-      preLoaderRoute: typeof ConversationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/agents': {
-      id: '/agents'
-      path: '/agents'
-      fullPath: '/agents'
-      preLoaderRoute: typeof AgentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -238,12 +228,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/better-auth': {
-      id: '/demo/better-auth'
-      path: '/demo/better-auth'
-      fullPath: '/demo/better-auth'
-      preLoaderRoute: typeof DemoBetterAuthRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_protected/users': {
+      id: '/_protected/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof ProtectedUsersRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/settings': {
+      id: '/_protected/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ProtectedSettingsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/risk-center': {
+      id: '/_protected/risk-center'
+      path: '/risk-center'
+      fullPath: '/risk-center'
+      preLoaderRoute: typeof ProtectedRiskCenterRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/knowledge-base': {
+      id: '/_protected/knowledge-base'
+      path: '/knowledge-base'
+      fullPath: '/knowledge-base'
+      preLoaderRoute: typeof ProtectedKnowledgeBaseRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/custom-rules': {
+      id: '/_protected/custom-rules'
+      path: '/custom-rules'
+      fullPath: '/custom-rules'
+      preLoaderRoute: typeof ProtectedCustomRulesRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/conversations': {
+      id: '/_protected/conversations'
+      path: '/conversations'
+      fullPath: '/conversations'
+      preLoaderRoute: typeof ProtectedConversationsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/better-auth': {
+      id: '/_protected/better-auth'
+      path: '/better-auth'
+      fullPath: '/better-auth'
+      preLoaderRoute: typeof ProtectedBetterAuthRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/agents': {
+      id: '/_protected/agents'
+      path: '/agents'
+      fullPath: '/agents'
+      preLoaderRoute: typeof ProtectedAgentsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/about': {
+      id: '/_protected/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof ProtectedAboutRouteImport
+      parentRoute: typeof ProtectedRoute
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -255,17 +301,39 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedAboutRoute: typeof ProtectedAboutRoute
+  ProtectedAgentsRoute: typeof ProtectedAgentsRoute
+  ProtectedBetterAuthRoute: typeof ProtectedBetterAuthRoute
+  ProtectedConversationsRoute: typeof ProtectedConversationsRoute
+  ProtectedCustomRulesRoute: typeof ProtectedCustomRulesRoute
+  ProtectedKnowledgeBaseRoute: typeof ProtectedKnowledgeBaseRoute
+  ProtectedRiskCenterRoute: typeof ProtectedRiskCenterRoute
+  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
+  ProtectedUsersRoute: typeof ProtectedUsersRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedAboutRoute: ProtectedAboutRoute,
+  ProtectedAgentsRoute: ProtectedAgentsRoute,
+  ProtectedBetterAuthRoute: ProtectedBetterAuthRoute,
+  ProtectedConversationsRoute: ProtectedConversationsRoute,
+  ProtectedCustomRulesRoute: ProtectedCustomRulesRoute,
+  ProtectedKnowledgeBaseRoute: ProtectedKnowledgeBaseRoute,
+  ProtectedRiskCenterRoute: ProtectedRiskCenterRoute,
+  ProtectedSettingsRoute: ProtectedSettingsRoute,
+  ProtectedUsersRoute: ProtectedUsersRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  AgentsRoute: AgentsRoute,
-  ConversationsRoute: ConversationsRoute,
-  CustomRulesRoute: CustomRulesRoute,
-  KnowledgeBaseRoute: KnowledgeBaseRoute,
-  RiskCenterRoute: RiskCenterRoute,
-  SettingsRoute: SettingsRoute,
-  UsersRoute: UsersRoute,
-  DemoBetterAuthRoute: DemoBetterAuthRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
+  SigninRoute: SigninRoute,
+  SignupRoute: SignupRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

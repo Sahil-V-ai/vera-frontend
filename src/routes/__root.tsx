@@ -31,8 +31,7 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
+  return (<>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
@@ -40,13 +39,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <HeroUIProvider>
 
       <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
-        <Sidebar />
-        <main className="sm:pl-64">
           {children}
-        </main>
         <Scripts />
       </body>
       </HeroUIProvider>
-    </html>
+  </>
   )
 }

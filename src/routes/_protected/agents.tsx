@@ -14,9 +14,9 @@ import {
     CardHeader,
 } from '@heroui/react'
 import { Settings, TrendingUp, TrendingDown } from 'lucide-react'
-import { Card } from '#/components/Card'
+import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/agents')({
+export const Route = createFileRoute('/_protected/agents')({
     component: AgentsPage,
 })
 
