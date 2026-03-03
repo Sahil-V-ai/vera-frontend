@@ -14,6 +14,7 @@ import { Route as SigninRouteImport } from './routes/signin'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProtectedUsersRouteImport } from './routes/_protected/users'
+import { Route as ProtectedUploadRecordingsRouteImport } from './routes/_protected/upload-recordings'
 import { Route as ProtectedSettingsRouteImport } from './routes/_protected/settings'
 import { Route as ProtectedRiskCenterRouteImport } from './routes/_protected/risk-center'
 import { Route as ProtectedKnowledgeBaseRouteImport } from './routes/_protected/knowledge-base'
@@ -48,6 +49,12 @@ const ProtectedUsersRoute = ProtectedUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => ProtectedRoute,
 } as any)
+const ProtectedUploadRecordingsRoute =
+  ProtectedUploadRecordingsRouteImport.update({
+    id: '/upload-recordings',
+    path: '/upload-recordings',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
 const ProtectedSettingsRoute = ProtectedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -106,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/knowledge-base': typeof ProtectedKnowledgeBaseRoute
   '/risk-center': typeof ProtectedRiskCenterRoute
   '/settings': typeof ProtectedSettingsRoute
+  '/upload-recordings': typeof ProtectedUploadRecordingsRoute
   '/users': typeof ProtectedUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -121,6 +129,7 @@ export interface FileRoutesByTo {
   '/knowledge-base': typeof ProtectedKnowledgeBaseRoute
   '/risk-center': typeof ProtectedRiskCenterRoute
   '/settings': typeof ProtectedSettingsRoute
+  '/upload-recordings': typeof ProtectedUploadRecordingsRoute
   '/users': typeof ProtectedUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -138,6 +147,7 @@ export interface FileRoutesById {
   '/_protected/knowledge-base': typeof ProtectedKnowledgeBaseRoute
   '/_protected/risk-center': typeof ProtectedRiskCenterRoute
   '/_protected/settings': typeof ProtectedSettingsRoute
+  '/_protected/upload-recordings': typeof ProtectedUploadRecordingsRoute
   '/_protected/users': typeof ProtectedUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/knowledge-base'
     | '/risk-center'
     | '/settings'
+    | '/upload-recordings'
     | '/users'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/knowledge-base'
     | '/risk-center'
     | '/settings'
+    | '/upload-recordings'
     | '/users'
     | '/api/auth/$'
   id:
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
     | '/_protected/knowledge-base'
     | '/_protected/risk-center'
     | '/_protected/settings'
+    | '/_protected/upload-recordings'
     | '/_protected/users'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof ProtectedUsersRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/upload-recordings': {
+      id: '/_protected/upload-recordings'
+      path: '/upload-recordings'
+      fullPath: '/upload-recordings'
+      preLoaderRoute: typeof ProtectedUploadRecordingsRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/_protected/settings': {
@@ -310,6 +330,7 @@ interface ProtectedRouteChildren {
   ProtectedKnowledgeBaseRoute: typeof ProtectedKnowledgeBaseRoute
   ProtectedRiskCenterRoute: typeof ProtectedRiskCenterRoute
   ProtectedSettingsRoute: typeof ProtectedSettingsRoute
+  ProtectedUploadRecordingsRoute: typeof ProtectedUploadRecordingsRoute
   ProtectedUsersRoute: typeof ProtectedUsersRoute
 }
 
@@ -322,6 +343,7 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedKnowledgeBaseRoute: ProtectedKnowledgeBaseRoute,
   ProtectedRiskCenterRoute: ProtectedRiskCenterRoute,
   ProtectedSettingsRoute: ProtectedSettingsRoute,
+  ProtectedUploadRecordingsRoute: ProtectedUploadRecordingsRoute,
   ProtectedUsersRoute: ProtectedUsersRoute,
 }
 
