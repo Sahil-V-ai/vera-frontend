@@ -1,54 +1,117 @@
-Welcome to your new TanStack Start app!
+## Getting Started
 
-# Getting Started
-
-To run this application:
+To run this application locally:
 
 ```bash
 npm install
 npm run dev
 ```
 
-# Building For Production
+---
 
-To build this application for production:
+## Building for Production
+
+To build the application for production:
 
 ```bash
 npm run build
 ```
 
-## Setting up Better Auth
+---
 
-1. Create `.env` and copy `.env.example` file in it.
-2. Generate and set the `BETTER_AUTH_SECRET` environment variable in your `.env`:
+## Setting Up Better Auth
 
-   ```bash
-   openssl rand -base64 32
-   ```
+1. Create a `.env` file and copy the contents of `.env.example` into it.
 
-### Setting up Database (RDS)
+2. Generate and set the `BETTER_AUTH_SECRET` environment variable:
 
-1. visit you aws console and navigate to rds.
-2. while creating new database  
-   a. Under "Choose a database creation method" choose "Easy Create"
-   b. Engine options: PostgreSQL
-   c. Scroll and keep everything default, Under "Credentials management" choosee "Self managed" and check "Auto generate password"
-   d. Hit create database
-3. In few seconds you will see this kind of banner:
-   ![alt text](image.png)
-4. Click on view creds and copy the password
-5. Click on the created database, Under "Connectivity & security" tab see if "Connection steps" ( takes little time to populate)
-6. After few moments you will get creds in this tab, and using this creds and copied password contruct the db url in .env
-7. Click on "Modify" on databse tab, Under "Connectivity" expand "Additional configuration" and check "Publicly accessible".
-8. Note down the security group being used.
-9. navigate to that security groups (EC2->security groups),click on the group being used on db instance, click on Edit inbound rules and a rule with below configuration:
-   a. Type: PostgreSQL
-   b. Source: Custom, 0.0.0.0/0
+```bash
+openssl rand -base64 32
+```
 
-10. run this in the folder of application running and having valid db url env. (Optional,Only for first time setup)
+Add the generated value to your `.env`.
+
+---
+
+## Setting Up Database (AWS RDS)
+
+### 1. Create the Database
+
+1. Go to the AWS Console and navigate to **RDS**.
+2. Click **Create database**.
+
+While creating the database:
+
+* **Database creation method:** Easy Create
+* **Engine options:** PostgreSQL
+* Keep most settings as default.
+* Under **Credentials management**:
+
+  * Select **Self managed**
+  * Enable **Auto generate password**
+
+3. Click **Create database**.
+
+---
+
+### 2. Retrieve Database Credentials
+
+After a few seconds you will see a banner similar to this:
+
+![Database Credentials Banner](image.png)
+
+1. Click **View credentials** and copy the generated password.
+2. Open the created database.
+3. Go to the **Connectivity & security** tab.
+4. Wait until **Connection steps** appear (this can take a short time).
+
+You will see connection details such as:
+
+* Endpoint
+* Port
+* Username
+
+Use these along with the copied password to construct your `DATABASE_URL` inside `.env`.
+
+---
+
+### 3. Make the Database Publicly Accessible
+
+1. Open the database page in RDS.
+2. Click **Modify**.
+3. Under **Connectivity**, expand **Additional configuration**.
+4. Enable **Publicly accessible**.
+5. Save the changes.
+
+---
+
+### 4. Configure Security Group
+
+1. Note the **Security Group** used by the database.
+2. Navigate to:
+
+```
+EC2 → Security Groups
+```
+
+3. Select the security group used by the database.
+4. Click **Edit inbound rules**.
+5. Add a rule:
+
+| Type       | Source    |
+| ---------- | --------- |
+| PostgreSQL | 0.0.0.0/0 |
+
+⚠️ This allows connections from anywhere. For production, restrict it to trusted IPs.
+
+---
+
+### 5. Generate Auth Tables (First-Time Setup)
+
+Run the following command in your project directory (where `.env` contains a valid database URL):
 
 ```bash
 npx auth@latest generate
 ```
 
-10. prompt yes to database table modifications.
+When prompted, confirm database table modifications.
