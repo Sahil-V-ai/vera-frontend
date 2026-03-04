@@ -15,6 +15,7 @@
     "db:seed": "dotenv -e .env.local -- prisma db seed"
   },
   "dependencies": {
+    "@better-auth/prisma-adapter": "^1.5.3",
     "@heroui/react": "^2.8.9",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
@@ -26,11 +27,11 @@
     "@tanstack/react-router-ssr-query": "^1.131.7",
     "@tanstack/react-start": "^1.132.0",
     "@tanstack/router-plugin": "^1.132.0",
-    "better-auth": "^1.4.12",
+    "better-auth": "^1.5.3",
+    "dotenv": "^17.3.1",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.545.0",
     "pg": "^8.19.0",
-    "prisma": "^7.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "recharts": "^3.7.0",
