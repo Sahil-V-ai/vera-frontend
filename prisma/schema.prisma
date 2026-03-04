@@ -6,6 +6,20 @@ datasource db {
   provider = "postgresql"
 }
 
+enum CallSource {
+  google_meet
+  manual
+  teams
+  exotel
+}
+
+enum CallStatus {
+  pending
+  processing
+  retry
+  completed
+}
+
 model tenant {
   id        String   @id
   domain    String
@@ -14,6 +28,26 @@ model tenant {
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @db.Timestamptz(6)
   users     user[]
+  calls     call[]
+}
+
+model call {
+  id            String     @id
+  tenantId      String
+  creator       String
+  agent         String
+  source        CallSource
+  recording_url String
+  duration      Int
+  timestamp     DateTime   @db.Timestamptz(6)
+  status        CallStatus
+  retry_count   Int
+  error_message String?
+  createdAt     DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime   @default(now()) @db.Timestamptz(6)
+  tenant        tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([tenantId])
 }
 
 model account {
@@ -56,7 +90,7 @@ model user {
   emailVerified Boolean
   image         String?
   tenantId      String?
-  tenant        tenant?    @relation(fields: [tenantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  tenant        tenant?   @relation(fields: [tenantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   createdAt     DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt     DateTime  @default(now()) @db.Timestamptz(6)
   account       account[]
