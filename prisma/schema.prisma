@@ -6,29 +6,18 @@ datasource db {
   provider = "postgresql"
 }
 
-enum CallSource {
-  google_meet
-  manual
-  teams
-  exotel
-}
-
-enum CallStatus {
-  pending
-  processing
-  retry
-  completed
-}
-
 model tenant {
-  id        String   @id
-  domain    String
-  name      String
-  active    Boolean
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt DateTime @default(now()) @db.Timestamptz(6)
-  users     user[]
-  calls     call[]
+  id               String         @id
+  domain           String
+  name             String
+  active           Boolean
+  createdAt        DateTime       @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime       @default(now()) @db.Timestamptz(6)
+  industry         Industry
+  primary_use_case PrimaryUseCase
+  timezone         String
+  calls            call[]
+  users            user[]
 }
 
 model call {
@@ -85,25 +74,75 @@ model session {
 
 model user {
   id            String    @id
-  name          String
+  name          String?
   email         String    @unique
   emailVerified Boolean
   image         String?
   tenantId      String?
-  tenant        tenant?   @relation(fields: [tenantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   createdAt     DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt     DateTime  @default(now()) @db.Timestamptz(6)
+  role          UserRole  @default(admin)
   account       account[]
   session       session[]
+  tenant        tenant?   @relation(fields: [tenantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model verification {
   id         String   @id
-  identifier String
+  identifier String   @unique
   value      String
   expiresAt  DateTime @db.Timestamptz(6)
   createdAt  DateTime @default(now()) @db.Timestamptz(6)
   updatedAt  DateTime @default(now()) @db.Timestamptz(6)
+}
 
-  @@index([identifier])
+model pendingOnboarding {
+  id               String   @id @default(uuid())
+  email            String   @unique
+  organizationName String?
+  primaryUseCase   String?
+  timezone         String?
+  industry         String?
+  createdAt        DateTime @default(now()) @db.Timestamptz(6)
+  expiresAt        DateTime @db.Timestamptz(6)
+}
+
+enum UserRole {
+  admin
+  supervisor
+  agent
+}
+
+enum CallSource {
+  google_meet
+  manual
+  teams
+  exotel
+}
+
+enum CallStatus {
+  pending
+  processing
+  retry
+  completed
+}
+
+enum PrimaryUseCase {
+  sales
+  customer_support
+  operational_calls
+  all_of_the_above
+}
+
+enum Industry {
+  technology_software
+  e_commerce_retail
+  finance
+  healthcare
+  education
+  real_estate
+  telecommunication
+  manufacturing
+  professional_services
+  others
 }

@@ -9,30 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SignupRouteImport } from './routes/signup'
-import { Route as SigninRouteImport } from './routes/signin'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProtectedUsersRouteImport } from './routes/_protected/users'
-import { Route as ProtectedUploadRecordingsRouteImport } from './routes/_protected/upload-recordings'
-import { Route as ProtectedSettingsRouteImport } from './routes/_protected/settings'
-import { Route as ProtectedRiskCenterRouteImport } from './routes/_protected/risk-center'
-import { Route as ProtectedKnowledgeBaseRouteImport } from './routes/_protected/knowledge-base'
-import { Route as ProtectedCustomRulesRouteImport } from './routes/_protected/custom-rules'
-import { Route as ProtectedConversationsRouteImport } from './routes/_protected/conversations'
-import { Route as ProtectedBetterAuthRouteImport } from './routes/_protected/better-auth'
-import { Route as ProtectedAgentsRouteImport } from './routes/_protected/agents'
-import { Route as ProtectedAboutRouteImport } from './routes/_protected/about'
+import { Route as ApiOnboardingRouteImport } from './routes/api/onboarding'
+import { Route as ApiCheckEmailIndexRouteImport } from './routes/api/check-email/index'
+import { Route as ProtectedDashboardIndexRouteImport } from './routes/_protected/dashboard/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ProtectedDashboardUsersRouteImport } from './routes/_protected/dashboard/users'
+import { Route as ProtectedDashboardUploadRecordingsRouteImport } from './routes/_protected/dashboard/upload-recordings'
+import { Route as ProtectedDashboardSettingsRouteImport } from './routes/_protected/dashboard/settings'
+import { Route as ProtectedDashboardRiskCenterRouteImport } from './routes/_protected/dashboard/risk-center'
+import { Route as ProtectedDashboardKnowledgeBaseRouteImport } from './routes/_protected/dashboard/knowledge-base'
+import { Route as ProtectedDashboardCustomRulesRouteImport } from './routes/_protected/dashboard/custom-rules'
+import { Route as ProtectedDashboardConversationsRouteImport } from './routes/_protected/dashboard/conversations'
+import { Route as ProtectedDashboardBetterAuthRouteImport } from './routes/_protected/dashboard/better-auth'
+import { Route as ProtectedDashboardAgentsRouteImport } from './routes/_protected/dashboard/agents'
+import { Route as ProtectedDashboardAboutRouteImport } from './routes/_protected/dashboard/about'
 
-const SignupRoute = SignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SigninRoute = SigninRouteImport.update({
-  id: '/signin',
-  path: '/signin',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedRoute = ProtectedRouteImport.update({
@@ -44,55 +41,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedUsersRoute = ProtectedUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => ProtectedRoute,
+const ApiOnboardingRoute = ApiOnboardingRouteImport.update({
+  id: '/api/onboarding',
+  path: '/api/onboarding',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedUploadRecordingsRoute =
-  ProtectedUploadRecordingsRouteImport.update({
-    id: '/upload-recordings',
-    path: '/upload-recordings',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
-const ProtectedSettingsRoute = ProtectedSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => ProtectedRoute,
+const ApiCheckEmailIndexRoute = ApiCheckEmailIndexRouteImport.update({
+  id: '/api/check-email/',
+  path: '/api/check-email/',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedRiskCenterRoute = ProtectedRiskCenterRouteImport.update({
-  id: '/risk-center',
-  path: '/risk-center',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedKnowledgeBaseRoute = ProtectedKnowledgeBaseRouteImport.update({
-  id: '/knowledge-base',
-  path: '/knowledge-base',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedCustomRulesRoute = ProtectedCustomRulesRouteImport.update({
-  id: '/custom-rules',
-  path: '/custom-rules',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedConversationsRoute = ProtectedConversationsRouteImport.update({
-  id: '/conversations',
-  path: '/conversations',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedBetterAuthRoute = ProtectedBetterAuthRouteImport.update({
-  id: '/better-auth',
-  path: '/better-auth',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedAgentsRoute = ProtectedAgentsRouteImport.update({
-  id: '/agents',
-  path: '/agents',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedAboutRoute = ProtectedAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const ProtectedDashboardIndexRoute = ProtectedDashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -100,131 +61,195 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedDashboardUsersRoute = ProtectedDashboardUsersRouteImport.update({
+  id: '/dashboard/users',
+  path: '/dashboard/users',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedDashboardUploadRecordingsRoute =
+  ProtectedDashboardUploadRecordingsRouteImport.update({
+    id: '/dashboard/upload-recordings',
+    path: '/dashboard/upload-recordings',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardSettingsRoute =
+  ProtectedDashboardSettingsRouteImport.update({
+    id: '/dashboard/settings',
+    path: '/dashboard/settings',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardRiskCenterRoute =
+  ProtectedDashboardRiskCenterRouteImport.update({
+    id: '/dashboard/risk-center',
+    path: '/dashboard/risk-center',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardKnowledgeBaseRoute =
+  ProtectedDashboardKnowledgeBaseRouteImport.update({
+    id: '/dashboard/knowledge-base',
+    path: '/dashboard/knowledge-base',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardCustomRulesRoute =
+  ProtectedDashboardCustomRulesRouteImport.update({
+    id: '/dashboard/custom-rules',
+    path: '/dashboard/custom-rules',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardConversationsRoute =
+  ProtectedDashboardConversationsRouteImport.update({
+    id: '/dashboard/conversations',
+    path: '/dashboard/conversations',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardBetterAuthRoute =
+  ProtectedDashboardBetterAuthRouteImport.update({
+    id: '/dashboard/better-auth',
+    path: '/dashboard/better-auth',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardAgentsRoute =
+  ProtectedDashboardAgentsRouteImport.update({
+    id: '/dashboard/agents',
+    path: '/dashboard/agents',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedDashboardAboutRoute = ProtectedDashboardAboutRouteImport.update({
+  id: '/dashboard/about',
+  path: '/dashboard/about',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/signin': typeof SigninRoute
-  '/signup': typeof SignupRoute
-  '/about': typeof ProtectedAboutRoute
-  '/agents': typeof ProtectedAgentsRoute
-  '/better-auth': typeof ProtectedBetterAuthRoute
-  '/conversations': typeof ProtectedConversationsRoute
-  '/custom-rules': typeof ProtectedCustomRulesRoute
-  '/knowledge-base': typeof ProtectedKnowledgeBaseRoute
-  '/risk-center': typeof ProtectedRiskCenterRoute
-  '/settings': typeof ProtectedSettingsRoute
-  '/upload-recordings': typeof ProtectedUploadRecordingsRoute
-  '/users': typeof ProtectedUsersRoute
+  '/login': typeof LoginRoute
+  '/api/onboarding': typeof ApiOnboardingRoute
+  '/dashboard/about': typeof ProtectedDashboardAboutRoute
+  '/dashboard/agents': typeof ProtectedDashboardAgentsRoute
+  '/dashboard/better-auth': typeof ProtectedDashboardBetterAuthRoute
+  '/dashboard/conversations': typeof ProtectedDashboardConversationsRoute
+  '/dashboard/custom-rules': typeof ProtectedDashboardCustomRulesRoute
+  '/dashboard/knowledge-base': typeof ProtectedDashboardKnowledgeBaseRoute
+  '/dashboard/risk-center': typeof ProtectedDashboardRiskCenterRoute
+  '/dashboard/settings': typeof ProtectedDashboardSettingsRoute
+  '/dashboard/upload-recordings': typeof ProtectedDashboardUploadRecordingsRoute
+  '/dashboard/users': typeof ProtectedDashboardUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/dashboard/': typeof ProtectedDashboardIndexRoute
+  '/api/check-email/': typeof ApiCheckEmailIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/signin': typeof SigninRoute
-  '/signup': typeof SignupRoute
-  '/about': typeof ProtectedAboutRoute
-  '/agents': typeof ProtectedAgentsRoute
-  '/better-auth': typeof ProtectedBetterAuthRoute
-  '/conversations': typeof ProtectedConversationsRoute
-  '/custom-rules': typeof ProtectedCustomRulesRoute
-  '/knowledge-base': typeof ProtectedKnowledgeBaseRoute
-  '/risk-center': typeof ProtectedRiskCenterRoute
-  '/settings': typeof ProtectedSettingsRoute
-  '/upload-recordings': typeof ProtectedUploadRecordingsRoute
-  '/users': typeof ProtectedUsersRoute
+  '/login': typeof LoginRoute
+  '/api/onboarding': typeof ApiOnboardingRoute
+  '/dashboard/about': typeof ProtectedDashboardAboutRoute
+  '/dashboard/agents': typeof ProtectedDashboardAgentsRoute
+  '/dashboard/better-auth': typeof ProtectedDashboardBetterAuthRoute
+  '/dashboard/conversations': typeof ProtectedDashboardConversationsRoute
+  '/dashboard/custom-rules': typeof ProtectedDashboardCustomRulesRoute
+  '/dashboard/knowledge-base': typeof ProtectedDashboardKnowledgeBaseRoute
+  '/dashboard/risk-center': typeof ProtectedDashboardRiskCenterRoute
+  '/dashboard/settings': typeof ProtectedDashboardSettingsRoute
+  '/dashboard/upload-recordings': typeof ProtectedDashboardUploadRecordingsRoute
+  '/dashboard/users': typeof ProtectedDashboardUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/dashboard': typeof ProtectedDashboardIndexRoute
+  '/api/check-email': typeof ApiCheckEmailIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_protected': typeof ProtectedRouteWithChildren
-  '/signin': typeof SigninRoute
-  '/signup': typeof SignupRoute
-  '/_protected/about': typeof ProtectedAboutRoute
-  '/_protected/agents': typeof ProtectedAgentsRoute
-  '/_protected/better-auth': typeof ProtectedBetterAuthRoute
-  '/_protected/conversations': typeof ProtectedConversationsRoute
-  '/_protected/custom-rules': typeof ProtectedCustomRulesRoute
-  '/_protected/knowledge-base': typeof ProtectedKnowledgeBaseRoute
-  '/_protected/risk-center': typeof ProtectedRiskCenterRoute
-  '/_protected/settings': typeof ProtectedSettingsRoute
-  '/_protected/upload-recordings': typeof ProtectedUploadRecordingsRoute
-  '/_protected/users': typeof ProtectedUsersRoute
+  '/login': typeof LoginRoute
+  '/api/onboarding': typeof ApiOnboardingRoute
+  '/_protected/dashboard/about': typeof ProtectedDashboardAboutRoute
+  '/_protected/dashboard/agents': typeof ProtectedDashboardAgentsRoute
+  '/_protected/dashboard/better-auth': typeof ProtectedDashboardBetterAuthRoute
+  '/_protected/dashboard/conversations': typeof ProtectedDashboardConversationsRoute
+  '/_protected/dashboard/custom-rules': typeof ProtectedDashboardCustomRulesRoute
+  '/_protected/dashboard/knowledge-base': typeof ProtectedDashboardKnowledgeBaseRoute
+  '/_protected/dashboard/risk-center': typeof ProtectedDashboardRiskCenterRoute
+  '/_protected/dashboard/settings': typeof ProtectedDashboardSettingsRoute
+  '/_protected/dashboard/upload-recordings': typeof ProtectedDashboardUploadRecordingsRoute
+  '/_protected/dashboard/users': typeof ProtectedDashboardUsersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/_protected/dashboard/': typeof ProtectedDashboardIndexRoute
+  '/api/check-email/': typeof ApiCheckEmailIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/signin'
-    | '/signup'
-    | '/about'
-    | '/agents'
-    | '/better-auth'
-    | '/conversations'
-    | '/custom-rules'
-    | '/knowledge-base'
-    | '/risk-center'
-    | '/settings'
-    | '/upload-recordings'
-    | '/users'
+    | '/login'
+    | '/api/onboarding'
+    | '/dashboard/about'
+    | '/dashboard/agents'
+    | '/dashboard/better-auth'
+    | '/dashboard/conversations'
+    | '/dashboard/custom-rules'
+    | '/dashboard/knowledge-base'
+    | '/dashboard/risk-center'
+    | '/dashboard/settings'
+    | '/dashboard/upload-recordings'
+    | '/dashboard/users'
     | '/api/auth/$'
+    | '/dashboard/'
+    | '/api/check-email/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/signin'
-    | '/signup'
-    | '/about'
-    | '/agents'
-    | '/better-auth'
-    | '/conversations'
-    | '/custom-rules'
-    | '/knowledge-base'
-    | '/risk-center'
-    | '/settings'
-    | '/upload-recordings'
-    | '/users'
+    | '/login'
+    | '/api/onboarding'
+    | '/dashboard/about'
+    | '/dashboard/agents'
+    | '/dashboard/better-auth'
+    | '/dashboard/conversations'
+    | '/dashboard/custom-rules'
+    | '/dashboard/knowledge-base'
+    | '/dashboard/risk-center'
+    | '/dashboard/settings'
+    | '/dashboard/upload-recordings'
+    | '/dashboard/users'
     | '/api/auth/$'
+    | '/dashboard'
+    | '/api/check-email'
   id:
     | '__root__'
     | '/'
     | '/_protected'
-    | '/signin'
-    | '/signup'
-    | '/_protected/about'
-    | '/_protected/agents'
-    | '/_protected/better-auth'
-    | '/_protected/conversations'
-    | '/_protected/custom-rules'
-    | '/_protected/knowledge-base'
-    | '/_protected/risk-center'
-    | '/_protected/settings'
-    | '/_protected/upload-recordings'
-    | '/_protected/users'
+    | '/login'
+    | '/api/onboarding'
+    | '/_protected/dashboard/about'
+    | '/_protected/dashboard/agents'
+    | '/_protected/dashboard/better-auth'
+    | '/_protected/dashboard/conversations'
+    | '/_protected/dashboard/custom-rules'
+    | '/_protected/dashboard/knowledge-base'
+    | '/_protected/dashboard/risk-center'
+    | '/_protected/dashboard/settings'
+    | '/_protected/dashboard/upload-recordings'
+    | '/_protected/dashboard/users'
     | '/api/auth/$'
+    | '/_protected/dashboard/'
+    | '/api/check-email/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProtectedRoute: typeof ProtectedRouteWithChildren
-  SigninRoute: typeof SigninRoute
-  SignupRoute: typeof SignupRoute
+  LoginRoute: typeof LoginRoute
+  ApiOnboardingRoute: typeof ApiOnboardingRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiCheckEmailIndexRoute: typeof ApiCheckEmailIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/signin': {
-      id: '/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof SigninRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_protected': {
@@ -241,74 +266,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected/users': {
-      id: '/_protected/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof ProtectedUsersRouteImport
-      parentRoute: typeof ProtectedRoute
+    '/api/onboarding': {
+      id: '/api/onboarding'
+      path: '/api/onboarding'
+      fullPath: '/api/onboarding'
+      preLoaderRoute: typeof ApiOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_protected/upload-recordings': {
-      id: '/_protected/upload-recordings'
-      path: '/upload-recordings'
-      fullPath: '/upload-recordings'
-      preLoaderRoute: typeof ProtectedUploadRecordingsRouteImport
-      parentRoute: typeof ProtectedRoute
+    '/api/check-email/': {
+      id: '/api/check-email/'
+      path: '/api/check-email'
+      fullPath: '/api/check-email/'
+      preLoaderRoute: typeof ApiCheckEmailIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_protected/settings': {
-      id: '/_protected/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof ProtectedSettingsRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/risk-center': {
-      id: '/_protected/risk-center'
-      path: '/risk-center'
-      fullPath: '/risk-center'
-      preLoaderRoute: typeof ProtectedRiskCenterRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/knowledge-base': {
-      id: '/_protected/knowledge-base'
-      path: '/knowledge-base'
-      fullPath: '/knowledge-base'
-      preLoaderRoute: typeof ProtectedKnowledgeBaseRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/custom-rules': {
-      id: '/_protected/custom-rules'
-      path: '/custom-rules'
-      fullPath: '/custom-rules'
-      preLoaderRoute: typeof ProtectedCustomRulesRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/conversations': {
-      id: '/_protected/conversations'
-      path: '/conversations'
-      fullPath: '/conversations'
-      preLoaderRoute: typeof ProtectedConversationsRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/better-auth': {
-      id: '/_protected/better-auth'
-      path: '/better-auth'
-      fullPath: '/better-auth'
-      preLoaderRoute: typeof ProtectedBetterAuthRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/agents': {
-      id: '/_protected/agents'
-      path: '/agents'
-      fullPath: '/agents'
-      preLoaderRoute: typeof ProtectedAgentsRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/about': {
-      id: '/_protected/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof ProtectedAboutRouteImport
+    '/_protected/dashboard/': {
+      id: '/_protected/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof ProtectedDashboardIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/api/auth/$': {
@@ -318,33 +294,106 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/dashboard/users': {
+      id: '/_protected/dashboard/users'
+      path: '/dashboard/users'
+      fullPath: '/dashboard/users'
+      preLoaderRoute: typeof ProtectedDashboardUsersRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/upload-recordings': {
+      id: '/_protected/dashboard/upload-recordings'
+      path: '/dashboard/upload-recordings'
+      fullPath: '/dashboard/upload-recordings'
+      preLoaderRoute: typeof ProtectedDashboardUploadRecordingsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/settings': {
+      id: '/_protected/dashboard/settings'
+      path: '/dashboard/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof ProtectedDashboardSettingsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/risk-center': {
+      id: '/_protected/dashboard/risk-center'
+      path: '/dashboard/risk-center'
+      fullPath: '/dashboard/risk-center'
+      preLoaderRoute: typeof ProtectedDashboardRiskCenterRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/knowledge-base': {
+      id: '/_protected/dashboard/knowledge-base'
+      path: '/dashboard/knowledge-base'
+      fullPath: '/dashboard/knowledge-base'
+      preLoaderRoute: typeof ProtectedDashboardKnowledgeBaseRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/custom-rules': {
+      id: '/_protected/dashboard/custom-rules'
+      path: '/dashboard/custom-rules'
+      fullPath: '/dashboard/custom-rules'
+      preLoaderRoute: typeof ProtectedDashboardCustomRulesRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/conversations': {
+      id: '/_protected/dashboard/conversations'
+      path: '/dashboard/conversations'
+      fullPath: '/dashboard/conversations'
+      preLoaderRoute: typeof ProtectedDashboardConversationsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/better-auth': {
+      id: '/_protected/dashboard/better-auth'
+      path: '/dashboard/better-auth'
+      fullPath: '/dashboard/better-auth'
+      preLoaderRoute: typeof ProtectedDashboardBetterAuthRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/agents': {
+      id: '/_protected/dashboard/agents'
+      path: '/dashboard/agents'
+      fullPath: '/dashboard/agents'
+      preLoaderRoute: typeof ProtectedDashboardAgentsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/dashboard/about': {
+      id: '/_protected/dashboard/about'
+      path: '/dashboard/about'
+      fullPath: '/dashboard/about'
+      preLoaderRoute: typeof ProtectedDashboardAboutRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
   }
 }
 
 interface ProtectedRouteChildren {
-  ProtectedAboutRoute: typeof ProtectedAboutRoute
-  ProtectedAgentsRoute: typeof ProtectedAgentsRoute
-  ProtectedBetterAuthRoute: typeof ProtectedBetterAuthRoute
-  ProtectedConversationsRoute: typeof ProtectedConversationsRoute
-  ProtectedCustomRulesRoute: typeof ProtectedCustomRulesRoute
-  ProtectedKnowledgeBaseRoute: typeof ProtectedKnowledgeBaseRoute
-  ProtectedRiskCenterRoute: typeof ProtectedRiskCenterRoute
-  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
-  ProtectedUploadRecordingsRoute: typeof ProtectedUploadRecordingsRoute
-  ProtectedUsersRoute: typeof ProtectedUsersRoute
+  ProtectedDashboardAboutRoute: typeof ProtectedDashboardAboutRoute
+  ProtectedDashboardAgentsRoute: typeof ProtectedDashboardAgentsRoute
+  ProtectedDashboardBetterAuthRoute: typeof ProtectedDashboardBetterAuthRoute
+  ProtectedDashboardConversationsRoute: typeof ProtectedDashboardConversationsRoute
+  ProtectedDashboardCustomRulesRoute: typeof ProtectedDashboardCustomRulesRoute
+  ProtectedDashboardKnowledgeBaseRoute: typeof ProtectedDashboardKnowledgeBaseRoute
+  ProtectedDashboardRiskCenterRoute: typeof ProtectedDashboardRiskCenterRoute
+  ProtectedDashboardSettingsRoute: typeof ProtectedDashboardSettingsRoute
+  ProtectedDashboardUploadRecordingsRoute: typeof ProtectedDashboardUploadRecordingsRoute
+  ProtectedDashboardUsersRoute: typeof ProtectedDashboardUsersRoute
+  ProtectedDashboardIndexRoute: typeof ProtectedDashboardIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
-  ProtectedAboutRoute: ProtectedAboutRoute,
-  ProtectedAgentsRoute: ProtectedAgentsRoute,
-  ProtectedBetterAuthRoute: ProtectedBetterAuthRoute,
-  ProtectedConversationsRoute: ProtectedConversationsRoute,
-  ProtectedCustomRulesRoute: ProtectedCustomRulesRoute,
-  ProtectedKnowledgeBaseRoute: ProtectedKnowledgeBaseRoute,
-  ProtectedRiskCenterRoute: ProtectedRiskCenterRoute,
-  ProtectedSettingsRoute: ProtectedSettingsRoute,
-  ProtectedUploadRecordingsRoute: ProtectedUploadRecordingsRoute,
-  ProtectedUsersRoute: ProtectedUsersRoute,
+  ProtectedDashboardAboutRoute: ProtectedDashboardAboutRoute,
+  ProtectedDashboardAgentsRoute: ProtectedDashboardAgentsRoute,
+  ProtectedDashboardBetterAuthRoute: ProtectedDashboardBetterAuthRoute,
+  ProtectedDashboardConversationsRoute: ProtectedDashboardConversationsRoute,
+  ProtectedDashboardCustomRulesRoute: ProtectedDashboardCustomRulesRoute,
+  ProtectedDashboardKnowledgeBaseRoute: ProtectedDashboardKnowledgeBaseRoute,
+  ProtectedDashboardRiskCenterRoute: ProtectedDashboardRiskCenterRoute,
+  ProtectedDashboardSettingsRoute: ProtectedDashboardSettingsRoute,
+  ProtectedDashboardUploadRecordingsRoute:
+    ProtectedDashboardUploadRecordingsRoute,
+  ProtectedDashboardUsersRoute: ProtectedDashboardUsersRoute,
+  ProtectedDashboardIndexRoute: ProtectedDashboardIndexRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
@@ -354,9 +403,10 @@ const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProtectedRoute: ProtectedRouteWithChildren,
-  SigninRoute: SigninRoute,
-  SignupRoute: SignupRoute,
+  LoginRoute: LoginRoute,
+  ApiOnboardingRoute: ApiOnboardingRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiCheckEmailIndexRoute: ApiCheckEmailIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

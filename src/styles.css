@@ -13,3 +13,11 @@ button.bg-transparent {
 .font-semibolt {
   font-weight: 500;
 }
+
+.bg-primary {
+  @apply text-white;
+}
+
+.oboarding-primary-usecase div[role="presentation"] {
+  gap: 30px;
+}

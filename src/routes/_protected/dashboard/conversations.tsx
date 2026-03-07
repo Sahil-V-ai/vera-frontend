@@ -14,7 +14,7 @@ import {
 import { FilterIcon, Search } from 'lucide-react'
 import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/_protected/conversations')({
+export const Route = createFileRoute('/_protected/dashboard/conversations')({
     component: ConversationsPage,
 })
 

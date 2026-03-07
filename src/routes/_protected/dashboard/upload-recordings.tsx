@@ -3,7 +3,7 @@ import { CardBody } from "@heroui/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { UploadIcon } from "lucide-react";
 
-export const Route = createFileRoute("/_protected/upload-recordings")({
+export const Route = createFileRoute("/_protected/dashboard/upload-recordings")({
   component: Page,
 });
 

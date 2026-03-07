@@ -10,7 +10,7 @@ import { Plus, RotateCw } from 'lucide-react'
 import { Card } from '@/components/Card'
 import { FileText, Database, RefreshCw, Upload, Link2 } from 'lucide-react'
 
-export const Route = createFileRoute('/_protected/knowledge-base')({
+export const Route = createFileRoute('/_protected/dashboard/knowledge-base')({
     component: KnowledgeBasePage,
 })
 

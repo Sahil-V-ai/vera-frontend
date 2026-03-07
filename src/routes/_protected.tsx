@@ -6,7 +6,7 @@ export const Route = createFileRoute('/_protected')({
     loader: async () => {
         const session = await getSession()
         if (!session?.user) {
-            throw redirect({ to: '/signin' })
+            throw redirect({ to: '/login' })
         }
         return session
     },

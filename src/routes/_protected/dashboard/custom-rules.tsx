@@ -8,7 +8,7 @@ import {
 import { Plus, Edit2, Trash2, Play } from 'lucide-react'
 import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/_protected/custom-rules')({
+export const Route = createFileRoute('/_protected/dashboard/custom-rules')({
     component: CustomRulesPage,
 })
 

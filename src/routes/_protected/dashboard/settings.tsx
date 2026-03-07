@@ -10,12 +10,66 @@ import {
 } from '@heroui/react'
 import { Building2, Bell, Shield, Save, AlertCircle } from 'lucide-react'
 import { Card } from '@/components/Card'
+import { authClient } from '@/lib/auth-client'
+import { useState, useEffect } from 'react'
+import { timezones } from '@/lib/utils'
 
-export const Route = createFileRoute('/_protected/settings')({
+export const Route = createFileRoute('/_protected/dashboard/settings')({
     component: SettingsPage,
 })
 
 function SettingsPage() {
+    const { data: session, isPending } = authClient.useSession()
+    const tenant = session?.user?.tenant
+
+    const [companyName, setCompanyName] = useState('')
+    const [timezone, setTimezone] = useState('pst')
+    const [industry, setIndustry] = useState('technology_software')
+    const [emailAlerts, setEmailAlerts] = useState(true)
+    const [piiMasking, setPiiMasking] = useState(true)
+    const [isSaving, setIsSaving] = useState(false)
+
+    useEffect(() => {
+        if (tenant) {
+            setCompanyName(tenant.name || '')
+            setTimezone(tenant.timezone || 'pst')
+            setIndustry(tenant.industry?.replace('_', ' ') || 'technology_software')
+        }
+    }, [tenant])
+
+    const handleSave = async () => {
+        setIsSaving(true)
+        try {
+            const response = await fetch('/api/tenant-settings', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: companyName,
+                    timezone,
+                    industry: industry.replace(' ', '_'),
+                }),
+            })
+            if (!response.ok) throw new Error('Failed to save settings')
+            window.location.reload()
+        } catch (error) {
+            console.error('Failed to save settings:', error)
+        } finally {
+            setIsSaving(false)
+        }
+    }
+
+    if (isPending) {
+        return (
+            <main className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-6 sm:p-8">
+                <div className="max-w-3xl mx-auto">
+                    <div className="animate-pulse space-y-4">
+                        <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+                        <div className="h-64 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+            </main>
+        )
+    }
     return (
         <main className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-6 sm:p-8">
             <div className="max-w-3xl mx-auto">
@@ -46,7 +100,8 @@ function SettingsPage() {
                                 </label>
                                 <Input
                                     placeholder="Enter company name"
-                                    defaultValue="Acme Corporation"
+                                    value={companyName}
+                                    onValueChange={setCompanyName}
                                     variant="bordered"
                                     size="lg"
                                 />
@@ -58,22 +113,16 @@ function SettingsPage() {
                                         Timezone
                                     </label>
                                     <Select
-                                        defaultSelectedKeys={['pst']}
+                                        selectedKeys={[timezone]}
+                                        onSelectionChange={(keys) => setTimezone(Array.from(keys)[0] as string)}
                                         variant="bordered"
                                         size="lg"
                                     >
-                                        <SelectItem key="pst">
-                                            Pacific Time (PST)
-                                        </SelectItem>
-                                        <SelectItem key="mst">
-                                            Mountain Time (MST)
-                                        </SelectItem>
-                                        <SelectItem key="cst">
-                                            Central Time (CST)
-                                        </SelectItem>
-                                        <SelectItem key="est">
-                                            Eastern Time (EST)
-                                        </SelectItem>
+                                        {timezones.map((option) => (
+                                            <SelectItem key={option.key}>
+                                                {option.label}
+                                            </SelectItem>
+                                        ))}
                                     </Select>
                                 </div>
 
@@ -82,21 +131,40 @@ function SettingsPage() {
                                         Industry
                                     </label>
                                     <Select
-                                        defaultSelectedKeys={['saas']}
+                                        selectedKeys={[industry.replace(' ', '_')]}
+                                        onSelectionChange={(keys) => setIndustry(Array.from(keys)[0] as string)}
                                         variant="bordered"
                                         size="lg"
                                     >
-                                        <SelectItem key="saas">
-                                            SaaS
+                                        <SelectItem key="technology_software">
+                                            Technology / Software
                                         </SelectItem>
-                                        <SelectItem key="ecommerce">
-                                            E-commerce
+                                        <SelectItem key="e_commerce_retail">
+                                            E-commerce / Retail
                                         </SelectItem>
-                                        <SelectItem key="fintech">
-                                            Fintech
+                                        <SelectItem key="finance">
+                                            Finance
                                         </SelectItem>
                                         <SelectItem key="healthcare">
                                             Healthcare
+                                        </SelectItem>
+                                        <SelectItem key="education">
+                                            Education
+                                        </SelectItem>
+                                        <SelectItem key="real_estate">
+                                            Real Estate
+                                        </SelectItem>
+                                        <SelectItem key="telecommunication">
+                                            Telecommunication
+                                        </SelectItem>
+                                        <SelectItem key="manufacturing">
+                                            Manufacturing
+                                        </SelectItem>
+                                        <SelectItem key="professional_services">
+                                            Professional Services
+                                        </SelectItem>
+                                        <SelectItem key="others">
+                                            Others
                                         </SelectItem>
                                     </Select>
                                 </div>
@@ -126,7 +194,8 @@ function SettingsPage() {
                                     </p>
                                 </div>
                                 <Switch
-                                    defaultSelected
+                                    isSelected={emailAlerts}
+                                    onValueChange={setEmailAlerts}
                                     size="lg"
                                 />
                             </div>
@@ -203,7 +272,8 @@ function SettingsPage() {
                                     </p>
                                 </div>
                                 <Switch
-                                    defaultSelected
+                                    isSelected={piiMasking}
+                                    onValueChange={setPiiMasking}
                                     size="lg"
                                 />
                             </div>
@@ -254,9 +324,11 @@ function SettingsPage() {
                 {/* Save Button */}
                 <div className="flex justify-end">
                     <Button
-                        size="lg"
+                        size="sm"
                         className="bg-black text-white hover:bg-gray-800 font-semibold"
                         startContent={<Save size={20} />}
+                        isLoading={isSaving}
+                        onPress={handleSave}
                     >
                         Save Changes
                     </Button>

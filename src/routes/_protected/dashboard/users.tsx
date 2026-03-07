@@ -16,7 +16,7 @@ import { Plus, Shield, Users as UsersIcon } from 'lucide-react'
 import { Card } from '@/components/Card'
 import { Chip } from '@/components/Chip'
 
-export const Route = createFileRoute('/_protected/users')({
+export const Route = createFileRoute('/_protected/dashboard/users')({
     component: UsersPage,
 })
 

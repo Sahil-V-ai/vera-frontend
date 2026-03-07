@@ -16,7 +16,7 @@ import {
 import { Settings, TrendingUp, TrendingDown } from 'lucide-react'
 import { Card } from '@/components/Card'
 
-export const Route = createFileRoute('/_protected/agents')({
+export const Route = createFileRoute('/_protected/dashboard/agents')({
     component: AgentsPage,
 })
 
