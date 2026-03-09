@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiOnboardingRouteImport } from './routes/api/onboarding'
+import { Route as ApiRulesIndexRouteImport } from './routes/api/rules/index'
 import { Route as ApiCheckEmailIndexRouteImport } from './routes/api/check-email/index'
 import { Route as ProtectedDashboardIndexRouteImport } from './routes/_protected/dashboard/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -44,6 +45,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApiOnboardingRoute = ApiOnboardingRouteImport.update({
   id: '/api/onboarding',
   path: '/api/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRulesIndexRoute = ApiRulesIndexRouteImport.update({
+  id: '/api/rules/',
+  path: '/api/rules/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiCheckEmailIndexRoute = ApiCheckEmailIndexRouteImport.update({
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard/': typeof ProtectedDashboardIndexRoute
   '/api/check-email/': typeof ApiCheckEmailIndexRoute
+  '/api/rules/': typeof ApiRulesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -155,6 +162,7 @@ export interface FileRoutesByTo {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard': typeof ProtectedDashboardIndexRoute
   '/api/check-email': typeof ApiCheckEmailIndexRoute
+  '/api/rules': typeof ApiRulesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/_protected/dashboard/': typeof ProtectedDashboardIndexRoute
   '/api/check-email/': typeof ApiCheckEmailIndexRoute
+  '/api/rules/': typeof ApiRulesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -195,6 +204,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/dashboard/'
     | '/api/check-email/'
+    | '/api/rules/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -213,6 +223,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/dashboard'
     | '/api/check-email'
+    | '/api/rules'
   id:
     | '__root__'
     | '/'
@@ -232,6 +243,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/_protected/dashboard/'
     | '/api/check-email/'
+    | '/api/rules/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -241,6 +253,7 @@ export interface RootRouteChildren {
   ApiOnboardingRoute: typeof ApiOnboardingRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiCheckEmailIndexRoute: typeof ApiCheckEmailIndexRoute
+  ApiRulesIndexRoute: typeof ApiRulesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -271,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/api/onboarding'
       fullPath: '/api/onboarding'
       preLoaderRoute: typeof ApiOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/rules/': {
+      id: '/api/rules/'
+      path: '/api/rules'
+      fullPath: '/api/rules/'
+      preLoaderRoute: typeof ApiRulesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/check-email/': {
@@ -407,6 +427,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiOnboardingRoute: ApiOnboardingRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiCheckEmailIndexRoute: ApiCheckEmailIndexRoute,
+  ApiRulesIndexRoute: ApiRulesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

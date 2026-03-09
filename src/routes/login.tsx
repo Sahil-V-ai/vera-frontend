@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Button, RadioGroup, Input, Select, SelectItem } from "@heroui/react";
 import { Card } from "@/components/Card";
-import { Mail, CheckSquare, Globe, Briefcase, Building2, ChevronRight, ChevronLeft, Target } from "lucide-react";
+import { Mail, CheckSquare, Globe, Building2, ChevronRight, ChevronLeft, Target } from "lucide-react";
 import { OnboardingRadio } from "./_protected/-components/onboardRadio";
 import { timezones } from "@/lib/utils";
+import { isBlockedDomain } from "@/lib/email/blocked-domains";
 
 const primaryUseCaseOptions = [
   { key: "sales", label: "Sales Calls", description: 'Track deals and sales performance' },
@@ -179,6 +180,12 @@ function LoginPage() {
     setLoading(true);
 
     try {
+      //   if (isBlockedDomain(email)) {
+      //   setError("This email domain is not allowed. Please use a different email address.");
+      //   setLoading(false);
+      //   return;
+      // }
+
       const result = await checkEmail(email);
 
       if (result.exists && result.onboardingComplete) {
@@ -316,7 +323,7 @@ function LoginPage() {
               type="button"
               isLoading={loading}
               className="w-full"
-              color="primary"
+              color="secondary"
               size="lg"
               startContent={<Mail className="h-5 w-5" />}
               onPress={handleLogin}
@@ -383,7 +390,7 @@ function LoginPage() {
               <Button
                 type="button"
                 className="flex-1"
-                color="primary"
+                color="secondary"
                 isDisabled={!canProceed()}
                 isLoading={loading}
                 endContent={currentStep < totalSteps - 1 ? <ChevronRight className="h-4 w-4" /> : <CheckSquare className="h-4 w-4" />}

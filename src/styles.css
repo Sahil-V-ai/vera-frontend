@@ -14,7 +14,7 @@ button.bg-transparent {
   font-weight: 500;
 }
 
-.bg-primary {
+.bg-secondary {
   @apply text-white;
 }
 

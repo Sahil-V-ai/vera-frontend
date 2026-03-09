@@ -11,7 +11,6 @@ import {
   Menu,
   Home,
   Upload,
-  User,
   LogOut
 } from 'lucide-react'
 import { useState } from 'react'
@@ -65,7 +64,7 @@ export default function Sidebar({ className = '', onItemClick }: { className?: s
                   to={route.href}
                   onClick={onItemClick}
                   className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive
-                    ? 'bg-primary text-white'
+                    ? 'bg-secondary text-white'
                     : 'text-white/60 hover:bg-white/10 hover:text-white'
                     }`}
                 >
@@ -100,7 +99,7 @@ export default function Sidebar({ className = '', onItemClick }: { className?: s
                     size="sm"
                     className="flex-shrink-0 text-white font-bold"
                     showFallback
-                    color='primary'
+                    color='secondary'
                   />
                   <div className="flex flex-col overflow-hidden">
                     <span className="truncate text-sm font-medium text-white">{session.user.email}</span>
