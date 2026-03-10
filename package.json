@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "prisma generate && vite build",
     "start": "vite preview",
     "test": "vitest run",
+    "postinstall": "prisma generate",
     "post-cta-init": "npx -y create-db@latest --user-agent tanstack/tsrouter",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
